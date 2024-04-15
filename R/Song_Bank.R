@@ -3,22 +3,15 @@
 #' @format
 #' \describe {
 #'    \item{artist_name}{Artist who wrote song}
-#'    \item{album_type}{}
 #'    \item{danceability}{How suitable track is for dancing from 0 to 1}
-#'    \item{energy}{etc.}
-#'    \item{key}{Key of track, -1 if not detected}
-#'    \item{loudness}{}
-#'    \item{mode}{}
-#'    \item{speechiness"}{}
-#'    \item{acousticness}{}
-#'    \item{"acousticness"}{}
+#'    \item{energy}{Measure from 0 to 1 on "perceptual measure of intensity and activity" where 1 is more active}
+#'    \item{key}{Key of track in Pitch Class notation (0 = C, 1 = C#/Dflat) -1 if not detected}
+#'    \item{loudness}{overall loudness of a track in decibels}
+#'    \item{mode}{Major or minor}
 #'    \item{instrumentalness}{Measure of lack of words (0 is words, 1 is instrumental, >0.5 instrumental}
-#'    \item{liveness}{}
-#'    \item{valence}{}
-#'    \item{tempo}{}
-#'    \item{time_signature}{}
+#'    \item{valence}{The musical "positiveness" - high would be happy/cheerful, low is sad/depressed/angry}
+#'    \item{tempo}{Tempo in bpm}
 #'    \item{artists}{}
 #'    \item{duration_ms}{Length of track in milliseconds}
-#'    \item{explicit}{}
 #' }
-#' @source Spotify API
+#' @source Spotify API, documentation: https://developer.spotify.com/documentation/web-api/reference/get-audio-features
