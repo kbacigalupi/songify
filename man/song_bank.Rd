@@ -15,8 +15,7 @@ not detected} \item{loudness}{overall loudness of a track in decibels}
 \item{mode}{Major or minor} \item{instrumentalness}{Measure of lack of
 words (0 is words, 1 is instrumental, >0.5 instrumental} \item{valence}{The
 musical "positiveness" - high would be happy/cheerful, low is
-sad/depressed/angry} \item{tempo}{Tempo in bpm} \item{artists}{All artists
-on the track} \item{duration_ms}{Length of track in milliseconds}
+sad/depressed/angry} \item{tempo}{Tempo in bpm}\item{duration_ms}{Length of track in milliseconds}
 }
 }
 \source{
