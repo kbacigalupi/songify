@@ -17,4 +17,3 @@ song_bank <- get_artist_audio_features(taylor$id) |>
 song_bank <- song_bank[!is.na(song_bank)]
 
 usethis::use_data(song_bank, overwrite = TRUE)
-

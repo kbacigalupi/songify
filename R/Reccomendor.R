@@ -2,7 +2,7 @@
 #'
 #' @description
 #' Given a song title or artist (or other items tbd..)
-#' @export]
+#' @export
 rec_song <- function(title) {
   return(title)
 }
