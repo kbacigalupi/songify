@@ -12,8 +12,7 @@ Sys.setenv(SPOTIFY_CLIENT_SECRET = '29862f8cb29c41b18d9d234947009a19')
 taylor <- get_genre_artists("pop", limit = 1)
 
 song_bank <- get_artist_audio_features(taylor$id) |>
-  select("artist_name", "album_type", "danceability", "energy", "key", "loudness", "mode", "speechiness", "acousticness", "instrumentalness", "liveness", "valence", "tempo", "time_signature", "artists", "duration_ms", "explicit")
+  select(c("artist_name", "album_type", "danceability", "energy", "key", "loudness", "mode", "speechiness", "acousticness", "instrumentalness", "liveness", "valence", "tempo", "time_signature", "duration_ms", "explicit"))
 
-song_bank <- song_bank[!is.na(song_bank)]
 
 usethis::use_data(song_bank, overwrite = TRUE)
