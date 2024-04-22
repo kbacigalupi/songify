@@ -1,37 +1,29 @@
+secret <- '0bc3f31a7f674b7f969d69fb466d8822'
+Sys.setenv(SPOTIFY_CLIENT_ID = '0a9a4d1514b3400abb2f141a32dd0bac')
+Sys.setenv(SPOTIFY_CLIENT_SECRET = '29862f8cb29c41b18d9d234947009a19')
+
 #' @title Recommend a song
 #'
 #' @description
 #' Given a song title or artist (or other items tbd..)
 #' @export
-rec_song <- function(title) {
-  return(title)
-}
-
-
-rec_song <- function(song_bank, genre, mode = NULL, energy = NULL, loudness = NULL, valence = NULL,
+rec_song <- function(genre, mode = NULL, energy = NULL, loudness = NULL, valence = NULL,
                      danceability = NULL, instrumentalness = NULL, min_duration = NULL, max_duration = NULL) {
 
   # Filter artists based on genre
-  artists <- song_bank |>
-    filter(genre == genre) |>
-    select(artist) |>
-    distinct() |>
-    pull()
+  artists <- get_genre_artists(genre)
 
   # If artists are found for the specified genre
   if (length(artists) == 0) {
     return("No artists found for this genre, try again")
   }
 
+
   # Select a random artist
-  artist <- sample(artists, 1)
+  artist <- sample_n(artists, 1)
 
   # Filter albums
-  albums <- song_bank |>
-    filter(artist == artist) |>
-    select(album) |>
-    distinct() |>
-    pull()
+  albums <- get_artist_albums(artist$id)
 
   # If no albums are found for the selected artist
   if (length(albums) == 0) {
@@ -39,11 +31,10 @@ rec_song <- function(song_bank, genre, mode = NULL, energy = NULL, loudness = NU
   }
 
   # Select a random album
-  album <- sample(albums, 1)
+  album <- sample_n(albums, 1)
 
   # Filter tracks
-  tracks <- song_bank |>
-    filter(artist == artist, album == album)
+  tracks <- get_album_tracks(album$id)
 
   # Apply other filters based on user inputs
   if (!is.null(mode)) {
@@ -86,7 +77,7 @@ rec_song <- function(song_bank, genre, mode = NULL, energy = NULL, loudness = NU
 
   # Select a random track
   track <- sample_n(tracks, 1)
-
+  print(track)
   # Return the recommended track
   return(song(track$track_name, track$artist_name, track$duration_ms, track$danceability, track$energy, track$key, track$mode, track$tempo))
 }
