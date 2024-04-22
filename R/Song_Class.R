@@ -60,20 +60,7 @@ validate_song <- function(obj) {
 #' @param key Number 1 - 12 that is translated into Words
 #' @param mode Major (1) or Minor (0) combined with key to produce the key of song in character value
 #' @param tempo in BPM
-song <- function(title, author, duration, genre, danceability, energy, key, mode, tempo) {
-  if((key < 1) | key > 12) {
-    stop("Key must be an integer between 1 and 12")
-  }
-  key = key_translator[key]
-
-  if(mode == 0) {
-    key <- paste(key, "Minor")
-  }
-  else if(mode == 1) {
-    key <- paste(key, "Major")
-  }
-  else {key <- paste(key, "Minor")}
-
+song <- function(title, author, duration, genre, danceability, energy, key_mode, tempo) {
   song <- new_song(title, author, duration, genre, danceability, energy, key, tempo) |>
     validate_song()
 
