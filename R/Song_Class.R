@@ -61,8 +61,7 @@ validate_song <- function(obj) {
 #' @param mode Major (1) or Minor (0) combined with key to produce the key of song in character value
 #' @param tempo in BPM
 song <- function(title, author, duration, genre, danceability, energy, key_mode, tempo) {
-
-  song <- new_song(title, author, duration, genre, danceability, energy, key_mode, tempo) |>
+  song <- new_song(title, author, duration, genre, danceability, energy, key, tempo) |>
     validate_song()
 
   return()
