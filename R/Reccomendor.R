@@ -22,20 +22,8 @@ rec_song <- function(genre, mode = NULL, energy = NULL, loudness = NULL, valence
   # Select a random artist
   artist <- sample_n(artists, 1)
 
-  # Filter albums
-  albums <- get_artist_albums(artist$id)
 
-  # If no albums are found for the selected artist
-  if (length(albums) == 0) {
-    return("No albums found, try again")  # or return a message indicating no albums found
-  }
-
-  # Select a random album
-  album <- sample_n(albums, 1)
-
-  # Filter tracks
-  tracks <- get_album_tracks(album$id)
-
+  tracks <- get_artist_audio_features(artist$id)
   # Apply other filters based on user inputs
   if (!is.null(mode)) {
     tracks <- tracks |>

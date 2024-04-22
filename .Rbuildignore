@@ -1,3 +1,4 @@
 ^songify\.Rproj$
 ^\.Rproj\.user$
 ^data-raw$
+^\.httr-oauth$
