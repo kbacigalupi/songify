@@ -72,7 +72,7 @@ song <- function(title, author, duration, genre, danceability, energy, key, mode
   else if(mode == 1) {
     key <- paste(key, "Major")
   }
-  else {key <- past(key, "Minor")}
+  else {key <- paste(key, "Minor")}
 
   song <- new_song(title, author, duration, genre, danceability, energy, key, tempo) |>
     validate_song()
