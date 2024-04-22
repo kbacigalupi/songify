@@ -24,7 +24,6 @@ new_song <- function(title, author, duration, genre, danceability, energy, key, 
   )
 }
 
-#HELP - NOT SURE IF I CAN JUST PUT THIS IN HERE - ONLY WE NEED IT
 key_translator <- c("C", "C#/Dflat", "D", "D#/Eflat", "E", "F", "F#/Gflat","G", "G#/Aflat", "A", "A#/Bflat", "B")
 
 #' @title Song Validator
@@ -82,3 +81,5 @@ song <- function(title, author, duration, genre, danceability, energy, key, mode
 
   return()
 }
+
+
