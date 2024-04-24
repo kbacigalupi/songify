@@ -68,6 +68,7 @@ rec_song <- function(genre, mode = NULL, energy = NULL, loudness = NULL, valence
   # Select a random track
   track <- dplyr::sample_n(tracks, 1)
   #print(track)
+
   # Return the recommended track
   return(song(track$track_name, track$artist_name, track$duration_ms, genre, track$danceability, track$energy, track$key_mode, track$tempo))
 }
