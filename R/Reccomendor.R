@@ -1,4 +1,4 @@
-source("Api.R")
+source("R/Api.R")
 
 #' @title Recommend a song
 #'
