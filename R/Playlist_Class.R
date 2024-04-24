@@ -37,7 +37,7 @@ validate_playlist <- function(obj) {
 #' @param genre Genre of the playlist
 #'
 playlist <- function(songs, genre) {
-  playlist <- new_song(songs, genre) |>
+  playlist <- new_playlist(songs, genre) |>
     validate_playlist()
 
   return(playlist)

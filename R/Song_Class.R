@@ -23,7 +23,7 @@ new_song <- function(title, author, duration, genre, danceability, energy, key, 
             "tempo" = tempo,
             #Notes that this is a subclass of playlist
             class = c("song", "playlist")
-            #       subclass, superclass
+            #       subclass
   )
 }
 
@@ -64,19 +64,23 @@ validate_song <- function(obj) {
 #' @param mode Major (1) or Minor (0) combined with key to produce the key of song in character value
 #' @param tempo in BPM
 song <- function(title, author, duration, genre, danceability, energy, key_mode, tempo) {
+  duration = duration / 1000
   song <- new_song(title, author, duration, genre, danceability, energy, key_mode, tempo) |>
     validate_song()
 
   return(song)
 }
 
+print <- function(x, ...) {
+  UseMethod("song", x)
+}
 
 #' @title Print Song
 #'
 #' @description Prints objects of song class in neat format
 #' @param song An object of type song to print out
-print.song <- function(song) {
-  song_string <- paste0(song, ", ", attr(song, "author"), ".................", attr(song, "duration"))
+print.song <- function(x) {
+  song_string <- paste0(x, ", ", attr(x, "author"), ".................", attr(x, "duration"))
   return(song_string)
 }
 

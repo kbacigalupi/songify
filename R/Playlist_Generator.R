@@ -7,8 +7,10 @@
 #' @return An object of the song class
 #' @export
 get_playlist <- function(genre, nsongs) {
-  songs <- vector(song, nsongs)
-  songs <- purrr::map_vec(.x = genre, .f = rec_song)
+  empty_songs <- rep(c(genre), each = nsongs)
+  print("Now making playlist")
+  songs <- purrr::map_vec(.x = songs, .f = rec_song)
+  print(songs[1])
   songs <- purrr::modify_if(.x = songs, .p = duplicated, .f = rec_song)
   playlist(songs, genre)
 }
