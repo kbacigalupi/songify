@@ -4,7 +4,17 @@
 \alias{rec_song}
 \title{Recommend a song}
 \usage{
-rec_song(title)
+rec_song(
+  genre,
+  mode = NULL,
+  energy = NULL,
+  loudness = NULL,
+  valence = NULL,
+  danceability = NULL,
+  instrumentalness = NULL,
+  min_duration = NULL,
+  max_duration = NULL
+)
 }
 \description{
 Given a song title or artist (or other items tbd..)
