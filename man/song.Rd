@@ -4,7 +4,7 @@
 \alias{song}
 \title{Song Helper}
 \usage{
-song(title, author, duration, genre, danceability, energy, key, mode, tempo)
+song(title, author, duration, genre, danceability, energy, key_mode, tempo)
 }
 \arguments{
 \item{title}{Title of the song}
@@ -21,11 +21,11 @@ genres - in this case whatever the user has asked for is the genre)}
 \item{energy}{Measure from 0 to 1 on "perceptual measure of intensity and
 activity" where 1 is more active}
 
+\item{tempo}{in BPM}
+
 \item{key}{Number 1 - 12 that is translated into Words}
 
 \item{mode}{Major (1) or Minor (0) combined with key to produce the key of song in character value}
-
-\item{tempo}{in BPM}
 }
 \description{
 The helper function called in song generator that makes a song
