@@ -1,3 +1,7 @@
+secret <- '0bc3f31a7f674b7f969d69fb466d8822'
+Sys.setenv(SPOTIFY_CLIENT_ID = '0a9a4d1514b3400abb2f141a32dd0bac')
+Sys.setenv(SPOTIFY_CLIENT_SECRET = '29862f8cb29c41b18d9d234947009a19')
+
 #' @title Recommend a song
 #'
 #' @description
@@ -63,6 +67,6 @@ rec_song <- function(genre, mode = NULL, energy = NULL, loudness = NULL, valence
   track <- sample_n(tracks, 1)
   print(track)
   # Return the recommended track
-  return(song(track$track_name, track$artist_name, track$duration_ms, track$danceability, track$energy, track$key, track$mode, track$tempo))
+  return(song(track$track_name, track$artist_name, track$duration_ms, track$danceability, track$energy, track$key_mode, track$tempo))
 }
 
