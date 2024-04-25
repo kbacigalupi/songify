@@ -5,9 +5,9 @@ source("R/Api.R")
 #' @description
 #' Given a song title or artist (or other items tbd..)
 #' @importFrom spotifyr get_genre_artists
-#' @importtFrom spotifyr get_artist_audio_features
+#' @importFrom spotifyr get_artist_audio_features
 #' @importFrom dplyr sample_n
-#' @importtFrom dplyr filter
+#' @importFrom dplyr filter
 #' @export
 rec_song <- function(genre, mode = NULL, energy = NULL, loudness = NULL, valence = NULL,
                      danceability = NULL, instrumentalness = NULL, min_duration = NULL, max_duration = NULL) {
