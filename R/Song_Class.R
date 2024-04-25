@@ -15,24 +15,25 @@ new_song <- function(title, author, duration, genre, danceability, energy, key, 
 
   structure(title,
             "author" = author,
-            "genre" = weights,
+            "duration" = duration,
+            "genre" = genre,
             "danceability" = danceability,
             "energy" = energy,
+            "key" = key,
+            "tempo" = tempo,
             #Notes that this is a subclass of playlist
             class = c("song", "playlist")
-            #       subclass, superclass
+            #       subclass
   )
 }
-
-key_translator <- c("C", "C#/Dflat", "D", "D#/Eflat", "E", "F", "F#/Gflat","G", "G#/Aflat", "A", "A#/Bflat", "B")
 
 #' @title Song Validator
 #'
 #' @description Makes sure an object with song has the correct properties of a song
 #' @param obj An object of the type song
 validate_song <- function(obj) {
-  if(!is.character(obj) | !is.character(attr(obj, "author")) | is.character(attr(obj, "author"))) {
-    stop("The title, author, genre, and key of the song must be characters")
+  if(!is.character(attr(obj, "author")) | !is.character(attr(obj, "key"))) {
+    stop("The author and key of the song must be characters")
   }
 
   if(!is.double(attr(obj, "duration")) & !is.double(attr(obj, "tempo"))) {
@@ -40,7 +41,7 @@ validate_song <- function(obj) {
   }
 
   if((!is.double(attr(obj, "danceability")) & (0 <= attr(obj, "danceability")) & (attr(obj, "danceability") <=1)) |
-  (!is.double(attr(obj, "energy")) & (0 <= attr(obj, "energy")) & attr(obj, "energy" <=1))) {
+  (!is.double(attr(obj, "energy")) & (0 <= attr(obj, "energy")) & (attr(obj, "energy") <=1))) {
       stop("Danceability and energy must be numbers between 1 and 0")
   }
 
@@ -63,11 +64,30 @@ validate_song <- function(obj) {
 #' @param mode Major (1) or Minor (0) combined with key to produce the key of song in character value
 #' @param tempo in BPM
 song <- function(title, author, duration, genre, danceability, energy, key_mode, tempo) {
-
+  duration = duration / 1000
   song <- new_song(title, author, duration, genre, danceability, energy, key_mode, tempo) |>
     validate_song()
 
-  return()
+  return(song)
 }
 
+print <- function(x, ...) {
+  UseMethod("song", x)
+}
 
+#' @title Print Song
+#'
+#' @description Prints objects of song class in neat format
+#' @param song An object of type song to print out
+print.song <- function(x) {
+  song_string <- paste0(x, ", ", attr(x, "author"), ".................", attr(x, "duration"))
+  return(song_string)
+}
+
+#' @title Song Summary
+#'
+#' @description R
+#' @param song an object of type song to summarize in more detail
+summary.Song <- function(song) {
+
+}
