@@ -23,7 +23,7 @@ validate_playlist <- function(obj) {
   }
 
   for (i in 1:length(obj)) {
-    validate_song(obj[i])
+    validate_song(obj[[i]])
   }
 
   return(obj)
@@ -33,7 +33,7 @@ validate_playlist <- function(obj) {
 #' @title Playlist Helper
 #'
 #' @description The helper function called in playlist generator to make playlist
-#' @param songs A Vector of the type Song
+#' @param songs A list with items of the type Song
 #' @param genre Genre of the playlist
 #'
 playlist <- function(songs, genre) {
@@ -43,3 +43,17 @@ playlist <- function(songs, genre) {
   return(playlist)
 }
 
+
+#' @title Print Playlist
+#'
+#' @description The helper function called in playlist generator to make playlist
+#' @param songs A song
+#' @param genre Genre of the playlist
+#' @exportS3Method
+#'
+print.playlist <- function(x) {
+  print(paste("There are", attr(x, "nsongs"), "songs in your playlist:"))
+  for(i in seq_along(x)) {
+    print(paste0("", print.song(x[[i]])))
+  }
+}
