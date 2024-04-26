@@ -8,10 +8,11 @@
 #' @export
 get_playlist <- function(genre, nsongs) {
   empty_songs <- rep(c(genre), each = nsongs)
+  print(empty_songs)
   print("Now making playlist")
-  songs <- purrr::map_vec(.x = songs, .f = rec_song)
-  print(songs[1])
-  songs <- purrr::modify_if(.x = songs, .p = duplicated, .f = rec_song)
-  playlist(songs, genre)
+  songs <- purrr::map(.x = empty_songs, .f = rec_song)
+  print(songs)
+  print(songs[[1]])
+  #songs <- purrr::modify_if(.x = songs, .p = duplicated, .f = rec_song)
 }
 

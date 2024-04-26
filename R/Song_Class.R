@@ -22,7 +22,7 @@ new_song <- function(title, author, duration, genre, danceability, energy, key, 
             "key" = key,
             "tempo" = tempo,
             #Notes that this is a subclass of playlist
-            class = c("song", "playlist")
+            class = "song"
             #       subclass
   )
 }
@@ -71,16 +71,26 @@ song <- function(title, author, duration, genre, danceability, energy, key_mode,
   return(song)
 }
 
-print <- function(x, ...) {
-  UseMethod("song", x)
-}
 
 #' @title Print Song
 #'
 #' @description Prints objects of song class in neat format
 #' @param song An object of type song to print out
+#' @exportS3Method
 print.song <- function(x) {
-  song_string <- paste0(x, ", ", attr(x, "author"), ".................", attr(x, "duration"))
+
+  if (!is.null(attr(x, "duration"))) {
+    duration_min <- round(attr(x, "duration")/60, 0)
+    duration_secs <- round(attr(x, "duration") %% 60, 0)
+    if (duration_secs < 10) {
+      duration_secs <- paste0("0", duration_secs)
+    }
+    duration <- paste0(duration_min, ":", duration_secs)
+  }
+  else {
+    duration_min = " "
+  }
+  song_string <- paste0(x, ", ", attr(x, "author"), ".................", duration)
   return(song_string)
 }
 
