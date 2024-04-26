@@ -1,0 +1,47 @@
+---
+title: "Using the songify package"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Using the songify package}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+## Generating a recommended song
+
+The main function of the songify package is to generate a song or a playlist given user inputs including genre, mode, energy, loudness, valence, danceability, instrumentalness, and duration. Let's see how we can accomplish this. First, load the `songify` package.
+
+```{r setup}
+library(songify)
+```
+
+Then, use the `rec_song()` function to generate a song recommendation. We'll retrieve information about a pop song, so we'll set the `genre` argument as 'pop' and the `energy` will be set to 0.8.
+
+```{r}
+a_song <- rec_song("pop", energy = 0.8)
+```
+
+The objects returned by `rec_song()` are of the S3 class 'song'
+
+To generate the playlist, use the `get_playlist()` function. We'll retrieve a playlist using an argument for `genre` and `nsongs` which will be the number of songs you want in your playlist. We will retrieve a playlist for 5 songs.
+
+```{r}
+a_playlist <- get_playlist("pop", 5)
+```
+
+## Song Bank Data
+
+The `songify` package also comes with a built in data set with all of the songs by Taylor Swift (as of April 2024) 
+
+```{r}
+songify::song_bank
+```
+
+

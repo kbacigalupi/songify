@@ -7,3 +7,4 @@
 data-raw/API_raw.R
 R/Api.R
 
+inst/doc
