@@ -90,6 +90,7 @@ print.song <- function(x) {
   else {
     duration_min = " "
   }
+  #ndots <- 50-nchar(x)
   song_string <- paste0(x, ", ", attr(x, "author"), ".................", duration)
   return(song_string)
 }
@@ -98,6 +99,7 @@ print.song <- function(x) {
 #'
 #' @description R
 #' @param song an object of type song to summarize in more detail
+#' @exportS3Method
 summary.Song <- function(song) {
 
 }

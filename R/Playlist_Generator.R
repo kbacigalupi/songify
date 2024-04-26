@@ -6,13 +6,24 @@
 #' @param genre the genre
 #' @return An object of the song class
 #' @export
-get_playlist <- function(genre, nsongs) {
+rec_playlist <- function(genre, nsongs, ...) {
+  if (nsongs > 15 | nsongs < 1) {
+    stop("Please enter a number between 1 and 15")
+  }
+  song_criteria <- list(...)
   empty_songs <- rep(c(genre), each = nsongs)
-  print(empty_songs)
-  print("Now making playlist")
-  songs <- purrr::map(.x = empty_songs, .f = rec_song)
-  print(songs)
-  print(songs[[1]])
-  #songs <- purrr::modify_if(.x = songs, .p = duplicated, .f = rec_song)
+  songs <- purrr::map(.x = empty_songs, ... = ..., .f = rec_song)
+  if(anyDuplicated(songs) != 0) {
+    songs <- flip_repeats(songs, genre, ...)
+    }
+  playlist <- playlist(songs, genre)
+  print(playlist)
+  return(playlist)
 }
 
+flip_repeats <- function(songs, genre, ...) {
+  while(anyDuplicated(songs) != 0) {
+    songs[[anyDuplicated(songs)]] <- rec_song(genre = genre, ...)
+  }
+  return(songs)
+}
