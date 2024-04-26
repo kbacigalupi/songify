@@ -70,6 +70,8 @@ rec_song <- function(genre, mode = NULL, energy = NULL, loudness = NULL, valence
   #print(track)
 
   # Return the recommended track
-  return(song(track$track_name, track$artist_name, track$duration_ms, genre, track$danceability, track$energy, track$key_mode, track$tempo))
+  song <- song(track$track_name, track$artist_name, track$duration_ms, genre, track$danceability, track$energy, track$key_mode, track$tempo)
+  print(song)
+  return(song)
 }
 
