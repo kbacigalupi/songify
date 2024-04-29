@@ -3,14 +3,14 @@ source("R/Api.R")
 #' @title Recommend a song
 #'
 #' @description
-#' Given a song title or artist (or other items tbd..)
+#' Given a genre of song and optionally other
 #' @importFrom spotifyr get_genre_artists
 #' @importFrom spotifyr get_artist_audio_features
 #' @importFrom dplyr sample_n
 #' @importFrom dplyr filter
 #' @export
 rec_song <- function(genre, mode = NULL, energy = NULL, loudness = NULL, valence = NULL,
-                     danceability = NULL, instrumentalness = NULL, min_duration = NULL, max_duration = NULL) {
+                     danceability = NULL, instrumentalness = NULL, min_duration = NULL, max_duration = NULL, print = TRUE) {
 
   # Filter artists based on genre
   artists <- spotifyr::get_genre_artists(genre)
@@ -71,7 +71,9 @@ rec_song <- function(genre, mode = NULL, energy = NULL, loudness = NULL, valence
 
   # Return the recommended track
   song <- song(track$track_name, track$artist_name, track$duration_ms, genre, track$danceability, track$energy, track$key_mode, track$tempo)
-  print(paste0("", print(song)))
+  if (print == TRUE) {
+    print(paste0("", print(song)))
+  }
   return(song)
 }
 
