@@ -59,7 +59,7 @@ print.playlist <- function(x) {
 
 #' @title Summarizing Songs in the playlist
 #'
-#' @description Makes sure an object with playlist has the correct attributes of playlist
+#' @description Summarizes
 #' @param obj An object of the type playlist
 summary.playlist <- function(x) {
 

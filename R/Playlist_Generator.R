@@ -1,7 +1,6 @@
 #' @title Playlist Generator
 #' @description Returns a playlist for a user given a genre other characteristics
-#' @importFrom purrr map_vec
-#' @importFrom purrr modify_if
+#' @importFrom purrr map
 #' @param nsongs the number of songs in a
 #' @param genre the genre
 #' @return An object of the song class
