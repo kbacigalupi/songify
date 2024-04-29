@@ -10,5 +10,5 @@
 \item{obj}{An object of the type playlist}
 }
 \description{
-Makes sure an object with playlist has the correct attributes of playlist
+Returns a data frame of the
 }

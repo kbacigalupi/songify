@@ -59,8 +59,20 @@ print.playlist <- function(x) {
 
 #' @title Summarizing Songs in the playlist
 #'
-#' @description Makes sure an object with playlist has the correct attributes of playlist
+#' @description Returns a data frame of the
 #' @param obj An object of the type playlist
+#' @importFrom purrr map
+#' @importFrom purrr reduce
+#' @importFrom dplyr full_join
+#' @exportS3Method
 summary.playlist <- function(x) {
-
+  for (i in 1:(attr(x, 'nsongs'))) {
+    print(summary)
+  }
 }
+
+##
+#sum_tbl <- purrr::map(x, summary)
+#print(sum_tbl)
+#sum_tbl <- sum_tbl |>
+  #purrr::reduce(dplyr::full_join)
