@@ -2,6 +2,7 @@
 
 S3method(print,playlist)
 S3method(print,song)
+S3method(summary,playlist)
 S3method(summary,song)
 export(rec_playlist)
 export(rec_song)

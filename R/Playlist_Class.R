@@ -59,8 +59,30 @@ print.playlist <- function(x) {
 
 #' @title Summarizing Songs in the playlist
 #'
-#' @description Summarizes
+#' @description Summarizes each song & it's characteristics
 #' @param obj An object of the type playlist
+#' @importFrom purrr map
+#' @exportS3Method
 summary.playlist <- function(x) {
-
+  print(class(x))
+  print(attr(x, "nsongs"))
+  nsongs = attr(x, "nsongs")
+  x <- data.frame(matrix(NA, nrow = attr(x, "nsongs"), ncol = 7))
+  colnames(x) = c("Title", "Genre", "Author", "Danceability", "Energy", "Key", "Tempo")
+  for (i in 1:(attr(x, 'nsongs'))) {
+    x[i, 1] = playlist[[i]]
+    x[i, 2] = attr(playlist[[i]], 'genre')
+    x[i, 3] = attr(playlist[[i]], 'author')
+    x[i, 4] = attr(playlist[[i]], 'danceability')
+    x[i, 5] = attr(playlist[[i]], 'energy')
+    x[i, 6] = attr(playlist[[i]], 'key')
+    x[i, 7] = attr(playlist[[i]], 'tempo')
+  }
+  return(x)
 }
+
+##
+#sum_tbl <- purrr::map(x, summary)
+#print(sum_tbl)
+#sum_tbl <- sum_tbl |>
+  #purrr::reduce(dplyr::full_join)

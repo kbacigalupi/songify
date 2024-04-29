@@ -102,7 +102,7 @@ print.song <- function(x) {
 #' @exportS3Method
 summary.song <- function(song) {
   summary_tbl <- data.frame(song = song,
-                            "Genre: " = attr(song, "genre"),
+                            "Genre" = attr(song, "genre"),
                             "Danceability" = attr(song, "danceability"),
                             "Energy" =  attr(song, "energy"),
                             "Key" = attr(song, "key"),
