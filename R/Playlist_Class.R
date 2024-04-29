@@ -62,8 +62,6 @@ print.playlist <- function(x) {
 #' @description Returns a data frame of the
 #' @param obj An object of the type playlist
 #' @importFrom purrr map
-#' @importFrom purrr reduce
-#' @importFrom dplyr full_join
 #' @exportS3Method
 summary.playlist <- function(x) {
   for (i in 1:(attr(x, 'nsongs'))) {

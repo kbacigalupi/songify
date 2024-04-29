@@ -2,11 +2,13 @@
 
 S3method(print,playlist)
 S3method(print,song)
+S3method(summary,playlist)
 S3method(summary,song)
 export(rec_playlist)
 export(rec_song)
 importFrom(dplyr,filter)
 importFrom(dplyr,sample_n)
+importFrom(purrr,map)
 importFrom(purrr,map_vec)
 importFrom(purrr,modify_if)
 importFrom(spotifyr,get_artist_audio_features)
