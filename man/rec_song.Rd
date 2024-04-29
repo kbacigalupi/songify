@@ -13,9 +13,10 @@ rec_song(
   danceability = NULL,
   instrumentalness = NULL,
   min_duration = NULL,
-  max_duration = NULL
+  max_duration = NULL,
+  print = TRUE
 )
 }
 \description{
-Given a song title or artist (or other items tbd..)
+Given a genre of song and optionally other
 }
