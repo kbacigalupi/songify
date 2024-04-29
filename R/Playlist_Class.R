@@ -59,7 +59,7 @@ print.playlist <- function(x) {
 
 #' @title Summarizing Songs in the playlist
 #'
-#' @description Returns a data frame of the
+#' @description Summarizes each song & it's characteristics
 #' @param obj An object of the type playlist
 #' @importFrom purrr map
 #' @exportS3Method

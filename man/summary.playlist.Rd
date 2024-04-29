@@ -10,5 +10,5 @@
 \item{obj}{An object of the type playlist}
 }
 \description{
-Returns a data frame of the
+Summarizes each song & it's characteristics
 }

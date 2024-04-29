@@ -9,7 +9,10 @@ export(rec_song)
 importFrom(dplyr,filter)
 importFrom(dplyr,sample_n)
 importFrom(purrr,map)
+<<<<<<< HEAD
 importFrom(purrr,map_vec)
 importFrom(purrr,modify_if)
+=======
+>>>>>>> 4361889a87d6733c4f8cac4f76e12098d0923a50
 importFrom(spotifyr,get_artist_audio_features)
 importFrom(spotifyr,get_genre_artists)
