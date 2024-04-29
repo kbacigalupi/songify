@@ -23,7 +23,7 @@ rec_playlist <- function(genre, nsongs, ...) {
 
 flip_repeats <- function(songs, genre, ...) {
   while(anyDuplicated(songs) != 0) {
-    songs[[anyDuplicated(songs)]] <- rec_song(genre = genre, print = FALSE, ...)
+    songs[[anyDuplicated(songs)]] <- rec_song(genre = genre, ..., print = FALSE)
   }
   return(songs)
 }

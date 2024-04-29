@@ -66,10 +66,10 @@ print.playlist <- function(x) {
 summary.playlist <- function(x) {
   print(class(x))
   print(attr(x, "nsongs"))
-  nsongs = attr(x, "nsongs")
-  x <- data.frame(matrix(NA, nrow = attr(x, "nsongs"), ncol = 7))
+  nsongs <- attr(x, "nsongs")
+  x <- data.frame(matrix(NA, nrow = nsongs, ncol = 7))
   colnames(x) = c("Title", "Genre", "Author", "Danceability", "Energy", "Key", "Tempo")
-  for (i in 1:(attr(x, 'nsongs'))) {
+  for (i in 1:nsongs) {
     x[i, 1] = playlist[[i]]
     x[i, 2] = attr(playlist[[i]], 'genre')
     x[i, 3] = attr(playlist[[i]], 'author')
