@@ -29,41 +29,28 @@ rec_song <- function(genre, mode = NULL, energy = NULL, loudness = NULL, valence
   print(nrow(tracks))
   # Apply other filters based on user inputs
   if (!is.null(mode)) {
-    print(mode)
-    print(tracks$mode)
     tracks <- dplyr::filter(tracks, tracks$mode == mode)
-    print(nrow(tracks))
   }
   if (!is.null(energy)) {
-    print(tracks$energy)
-    print(energy)
-
-    tracks <- tracks |>
-      dplyr::filter(abs(tracks$energy - energy) <= 0.1)
+    tracks <- dplyr::filter(tracks, abs(tracks$energy - energy) <= 0.1)
   }
   if (!is.null(loudness)) {
-    tracks <- tracks |>
-      dplyr::filter(abs(tracks$loudness - loudness) <= 0.1)
+    tracks <- dplyr::filter(tracks, abs(tracks$loudness - loudness) <= 0.1)
   }
   if (!is.null(valence)) {
-    tracks <- tracks |>
-      dplyr::filter(abs(tracks$valence - valence) <= 0.1)
+    tracks <- dplyr::filter(tracks, abs(tracks$valence - valence) <= 0.1)
   }
   if (!is.null(danceability)) {
-    tracks <- tracks |>
-      dplyr::filter(abs(tracks$danceability - danceability) <= 0.1)
+    tracks <- dplyr::filter(tracks, abs(tracks$danceability - danceability) <= 0.1)
   }
   if (!is.null(instrumentalness)) {
-    tracks <- tracks |>
-      dplyr::filter(abs(tracks$instrumentalness - instrumentalness) <= 0.1)
+    tracks <- dplyr::filter(tracks, (abs(tracks$instrumentalness - instrumentalness) <= 0.1))
   }
   if (!is.null(min_duration)) {
-    tracks <- tracks |>
-      dplyr::filter(tracks$duration_ms >= min_duration * 1000)  # Convert duration to milliseconds
+    tracks <- dplyr::filter(tracks, tracks$duration_ms >= min_duration * 1000)  # Convert duration to milliseconds
   }
   if (!is.null(max_duration)) {
-    tracks <- tracks |>
-      dplyr::filter(tracks$duration_ms <= max_duration * 1000)
+    tracks <- dplyr::filter(tracks, tracks$duration_ms <= max_duration * 1000)
   }
 
   # If no tracks are found after filtering
