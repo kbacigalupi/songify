@@ -1,11 +1,14 @@
 source("R/Api.R")
 #' @title Recommend a song
+#'
 #' @description
 #' Given a genre of song and optionally other
+#'
 #' @importFrom spotifyr get_genre_artists
 #' @importFrom spotifyr get_artist_audio_features
 #' @importFrom dplyr sample_n
 #' @importFrom dplyr filter
+#'
 #' @param genre the genre
 #' @param mode the mode, 0 for minor 1 for major
 #' @param energy the energy of the song on a scale from 0.0-1.0
@@ -15,8 +18,16 @@ source("R/Api.R")
 #' @param instrumentalness predicts if a song has no vocals on a scale from 0.0-1.0. The higher the instrumentalness the greater the chance the song contains no vocal content.
 #' @param min_duration the minimum duration of the song in seconds
 #' @param max_duration the maximum duration of the song in seconds
-#' @return an object of the song class
+#' @return an object of the song class with the following elements
+#' * song
+#' * author
+#' * duration
+#'
+#' @examples
+#' rec_song("pop", mode = 1, energy = 0.7, loudness = -20, valence = 0.5, danceability = 0.8, instrumentalness = 0.7, min_duration = 100, max_duration = 400)
+#'
 #' @export
+#'
 rec_song <- function(genre, mode = NULL, energy = NULL, loudness = NULL, valence = NULL,
                      danceability = NULL, instrumentalness = NULL, min_duration = NULL, max_duration = NULL, print = TRUE) {
 
