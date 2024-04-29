@@ -11,7 +11,6 @@ new_playlist <- function(songs, genre) {
   )
 }
 
-
 #' @title Playlist Validator
 #'
 #' @description Makes sure an object with playlist has the correct attributes of playlist
@@ -56,4 +55,12 @@ print.playlist <- function(x) {
   for(i in seq_along(x)) {
     print(paste0("", print.song(x[[i]])))
   }
+}
+
+#' @title Summarizing Songs in the playlist
+#'
+#' @description Makes sure an object with playlist has the correct attributes of playlist
+#' @param obj An object of the type playlist
+summary.playlist <- function(x) {
+
 }
