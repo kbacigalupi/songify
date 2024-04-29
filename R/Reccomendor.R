@@ -1,13 +1,21 @@
 source("R/Api.R")
-
 #' @title Recommend a song
-#'
 #' @description
 #' Given a genre of song and optionally other
 #' @importFrom spotifyr get_genre_artists
 #' @importFrom spotifyr get_artist_audio_features
 #' @importFrom dplyr sample_n
 #' @importFrom dplyr filter
+#' @param genre the genre
+#' @param mode the mode, 0 for minor 1 for major
+#' @param energy the energy of the song on a scale from 0.0-1.0
+#' @param loudness the loudness of the song in decibels, values typically range from -60-0
+#' @param valence describes the musical positiveness of a song on a scale from 0.0-1.0. Higher valence songs are more happy/euphoric, lower valence songs are more angry/depressed.
+#' @param danceability describes how suitable the song is for dancing on a scale from 0.0-1.0.
+#' @param instrumentalness predicts if a song has no vocals on a scale from 0.0-1.0. The higher the instrumentalness the greater the chance the song contains no vocal content.
+#' @param min_duration the minimum duration of the song in seconds
+#' @param max_duration the maximum duration of the song in seconds
+#' @return an object of the song class
 #' @export
 rec_song <- function(genre, mode = NULL, energy = NULL, loudness = NULL, valence = NULL,
                      danceability = NULL, instrumentalness = NULL, min_duration = NULL, max_duration = NULL, print = TRUE) {
