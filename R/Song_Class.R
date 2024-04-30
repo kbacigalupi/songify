@@ -75,8 +75,9 @@ song <- function(title, author, duration, genre, danceability, energy, key_mode,
 #'
 #' @description Prints objects of song class in neat format
 #' @param x An object of type song to print out
+#' @param ... to adhere to generic print method
 #' @exportS3Method
-print.song <- function(x) {
+print.song <- function(x, ...) {
 
   if (!is.null(attr(x, "duration"))) {
     duration_min <- round(attr(x, "duration")/60, 0)

@@ -11,7 +11,7 @@ rec_song(
   valence = NULL,
   danceability = NULL,
   instrumentalness = NULL,
-  print = TRUE
+  p = TRUE
 )
 }
 \arguments{
@@ -32,7 +32,8 @@ from 0.0-1.0.}
 0.0-1.0. The higher the instrumentalness the greater the chance the song
 contains no vocal content.}
 
-\item{print}{Whether the songs will be printed as it is reccomended}
+\item{p}{Whether the song will be printed (mostly internal use when building
+playlists)}
 }
 \value{
 an object of the song class with the following elements
@@ -40,6 +41,10 @@ an object of the song class with the following elements
 \item song
 \item author
 \item duration
+\item genre
+\item danceability
+\item energy
+\item tempo
 }
 }
 \description{
@@ -47,6 +52,6 @@ Given a genre of song and optionally other
 }
 \examples{
 rec_song("pop", mode = 1, energy = 0.7, valence = 0.5, danceability = 0.8,
-instrumentalness = 0.7, min_duration = 100, max_duration = 400)
+instrumentalness = 0.7)
 
 }

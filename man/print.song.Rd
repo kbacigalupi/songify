@@ -4,7 +4,7 @@
 \alias{print.song}
 \title{Print Song}
 \usage{
-\method{print}{song}(x)
+\method{print}{song}(x, ...)
 }
 \arguments{
 \item{x}{An object of type song to print out}

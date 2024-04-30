@@ -19,21 +19,25 @@
 #' @param instrumentalness predicts if a song has no vocals on a scale from
 #'   0.0-1.0. The higher the instrumentalness the greater the chance the song
 #'   contains no vocal content.
-#' @param print Whether the songs will be printed as it is reccomended
+#' @param p Whether the song will be printed (mostly internal use when building
+#'   playlists)
 #' @return an object of the song class with the following elements
 #' * song
 #' * author
 #' * duration
-#'
+#' * genre
+#' * danceability
+#' * energy
+#  * key_mode (A-B, Major/Minor)
+#' * tempo
 #' @examples
 #' rec_song("pop", mode = 1, energy = 0.7, valence = 0.5, danceability = 0.8,
-#' instrumentalness = 0.7, min_duration = 100, max_duration = 400)
+#' instrumentalness = 0.7)
 #'
 #' @export
-#'
 rec_song <- function(genre, mode = NULL, energy = NULL, valence = NULL,
-                     danceability = NULL, instrumentalness = NULL, print = TRUE) {
-
+                     danceability = NULL, instrumentalness = NULL, p = TRUE) {
+  #print(p)
   # Filter artists based on genre
 
   tryCatch(expr = {
@@ -58,13 +62,23 @@ rec_song <- function(genre, mode = NULL, energy = NULL, valence = NULL,
     return("No artists found for this genre, try again")
   }
 
+  dif <-  0.08
+
+  # Select a random artist
+  artist <- dplyr::sample_n(artists, 1)
+  # Get audio features for the selected artist
+  tracks <- spotifyr::get_artist_audio_features(artist$id)
+
+
   # Create a loop to keep trying with different artists until a track is found
   while (TRUE) {
-    # Select a random artist
-    artist <- dplyr::sample_n(artists, 1)
+    dif <- dif + 0.02
+    print(dif)
 
-    # Get audio features for the selected artist
-    tracks <- spotifyr::get_artist_audio_features(artist$id)
+    if (dif > 0.22){stop("Could not find song close to your specifications. Try a new combination!")}
+
+    tracks <- rbind(tracks, spotifyr::get_artist_audio_features(dplyr::sample_n(artists, 1)$id))
+
 
     print(nrow(tracks))
     # Combine all filters into one filter expression
@@ -74,17 +88,17 @@ rec_song <- function(genre, mode = NULL, energy = NULL, valence = NULL,
       filters <- filters & (tracks$mode == mode)
     }
     if (!is.null(energy)) {
-      filters <- filters & abs(tracks$energy - energy) <= 0.1
+      filters <- filters & abs(tracks$energy - energy) <= dif
     }
 
     if (!is.null(valence)) {
-      filters <- filters & abs(tracks$valence - valence) <= 0.1
+      filters <- filters & abs(tracks$valence - valence) <= dif
     }
     if (!is.null(danceability)) {
-      filters <- filters & abs(tracks$danceability - danceability) <= 0.1
+      filters <- filters & abs(tracks$danceability - danceability) <= dif
     }
     if (!is.null(instrumentalness)) {
-      filters <- filters & abs(tracks$instrumentalness - instrumentalness) <= 0.1
+      filters <- filters & abs(tracks$instrumentalness - instrumentalness) <= dif
     }
 
     # Apply the filters
@@ -99,7 +113,7 @@ rec_song <- function(genre, mode = NULL, energy = NULL, valence = NULL,
       # Create the song object and print it if necessary
       song <- song(track$track_name, track$artist_name, track$duration_ms, genre, track$danceability, track$energy, track$key_mode, track$tempo)
 
-      if (print == TRUE) {
+      if (p != FALSE) {
         print(paste0("", print(song)))
       }
 
