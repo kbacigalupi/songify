@@ -9,3 +9,5 @@ R/Api.R
 
 inst/doc
 .Renviron
+/doc/
+/Meta/
