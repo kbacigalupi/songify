@@ -1,4 +1,3 @@
-source("R/Api.R")
 #' @title Recommend a song
 #'
 #' @description
@@ -6,6 +5,7 @@ source("R/Api.R")
 #'
 #' @importFrom spotifyr get_genre_artists
 #' @importFrom spotifyr get_artist_audio_features
+#' @importFrom spotifyr get_spotify_access_token
 #' @importFrom dplyr sample_n
 #' @importFrom dplyr filter
 #'
@@ -29,10 +29,26 @@ source("R/Api.R")
 #' @export
 #'
 rec_song <- function(genre, mode = NULL, energy = NULL, loudness = NULL, valence = NULL,
-                     danceability = NULL, instrumentalness = NULL, min_duration = NULL, max_duration = NULL, print = TRUE) {
+                     danceability = NULL, instrumentalness = NULL, print = TRUE) {
 
   # Filter artists based on genre
-  artists <- spotifyr::get_genre_artists(genre)
+
+  tryCatch(expr = {
+    access_token <- spotifyr::get_spotify_access_token()
+  },
+  error = function(e){
+    message <- paste(
+      "No valid spotify API credentials found. Use the R code below to store your spotify API credentials as environment variables:",
+      "Sys.setenv(SPOTIFY_CLIENT_ID = 'xxxxxxxxxxxxxxxxxxxxx')",
+      "Sys.setenv(SPOTIFY_CLIENT_SECRET = 'xxxxxxxxxxxxxxxxxxxxx')",
+      "",
+      "If you don't have a client ID and secret, see https://developer.spotify.com/documentation/web-api for instructions on how to obtain them.",
+      sep = "\n"
+      )
+    stop(message, call. = FALSE)
+  })
+
+  artists <- spotifyr::get_genre_artists(genre, authorization = access_token)
 
   # If artists are found for the specified genre
   if (length(artists) == 0) {
@@ -45,44 +61,34 @@ rec_song <- function(genre, mode = NULL, energy = NULL, loudness = NULL, valence
 
 
   tracks <- spotifyr::get_artist_audio_features(artist$id)
+  print(nrow(tracks))
   # Apply other filters based on user inputs
   if (!is.null(mode)) {
-    tracks <- tracks |>
-      dplyr::filter(mode == mode)
+    tracks <- dplyr::filter(tracks, tracks$mode == mode)
   }
   if (!is.null(energy)) {
-    tracks <- tracks |>
-      dplyr::filter(abs(energy - energy) <= 0.1)
+    tracks <- dplyr::filter(tracks, abs(tracks$energy - energy) <= 0.1)
   }
   if (!is.null(loudness)) {
-    tracks <- tracks |>
-      dplyr::filter(abs(loudness - loudness) <= 1)
+    tracks <- dplyr::filter(tracks, abs(tracks$loudness - loudness) <= 0.1)
   }
   if (!is.null(valence)) {
-    tracks <- tracks |>
-      dplyr::filter(abs(valence - valence) <= 0.1)
+    tracks <- dplyr::filter(tracks, abs(tracks$valence - valence) <= 0.1)
   }
   if (!is.null(danceability)) {
-    tracks <- tracks |>
-      dplyr::filter(abs(danceability - danceability) <= 0.1)
+    tracks <- dplyr::filter(tracks, abs(tracks$danceability - danceability) <= 0.1)
   }
   if (!is.null(instrumentalness)) {
-    tracks <- tracks |>
-      dplyr::filter(abs(instrumentalness - instrumentalness) <= 0.1)
+    tracks <- dplyr::filter(tracks, (abs(tracks$instrumentalness - instrumentalness) <= 0.1))
   }
-  if (!is.null(min_duration)) {
-    tracks <- tracks |>
-      dplyr::filter(duration_ms >= min_duration * 1000)  # Convert duration to milliseconds
-  }
-  if (!is.null(max_duration)) {
-    tracks <- tracks |>
-      dplyr::filter(duration_ms <= max_duration * 1000)
-  }
+
 
   # If no tracks are found after filtering
   if (nrow(tracks) == 0) {
     return("No tracks found, try again")  # or return a message indicating no tracks found
   }
+
+  #print(nrow(tracks))
 
   # Select a random track
   track <- dplyr::sample_n(tracks, 1)
