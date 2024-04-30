@@ -2,6 +2,7 @@
 #'
 #' @description Constructor for Playlist class
 #' @param songs list of song objects
+#' @param genre a character representing what genre the songs in the playlist all fall under
 new_playlist <- function(songs, genre) {
 
   structure(songs,
@@ -45,9 +46,8 @@ playlist <- function(songs, genre) {
 
 #' @title Print Playlist
 #'
-#' @description The helper function called in playlist generator to make playlist
-#' @param songs A song
-#' @param genre Genre of the playlist
+#' @description An S3 method to print playlists
+#' @param x A playlist object to be printed
 #' @exportS3Method
 #'
 print.playlist <- function(x) {
@@ -60,7 +60,7 @@ print.playlist <- function(x) {
 #' @title Summarizing Songs in the playlist
 #'
 #' @description Summarizes each song & it's characteristics
-#' @param obj An object of the type playlist
+#' @param x An object of the type playlist to be summarized
 #' @importFrom purrr map
 #' @exportS3Method
 summary.playlist <- function(x) {

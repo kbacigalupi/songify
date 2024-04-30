@@ -8,6 +8,8 @@ new_playlist(songs, genre)
 }
 \arguments{
 \item{songs}{list of song objects}
+
+\item{genre}{a character representing what genre the songs in the playlist all fall under}
 }
 \description{
 Constructor for Playlist class

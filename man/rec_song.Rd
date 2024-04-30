@@ -8,12 +8,9 @@ rec_song(
   genre,
   mode = NULL,
   energy = NULL,
-  loudness = NULL,
   valence = NULL,
   danceability = NULL,
   instrumentalness = NULL,
-  min_duration = NULL,
-  max_duration = NULL,
   print = TRUE
 )
 }
@@ -24,21 +21,32 @@ rec_song(
 
 \item{energy}{the energy of the song on a scale from 0.0-1.0}
 
-\item{loudness}{the loudness of the song in decibels, values typically range from -60-0}
+\item{valence}{describes the musical positiveness of a song on a scale from
+0.0-1.0. Higher valence songs are more happy/euphoric, lower valence songs
+are more angry/depressed.}
 
-\item{valence}{describes the musical positiveness of a song on a scale from 0.0-1.0. Higher valence songs are more happy/euphoric, lower valence songs are more angry/depressed.}
+\item{danceability}{describes how suitable the song is for dancing on a scale
+from 0.0-1.0.}
 
-\item{danceability}{describes how suitable the song is for dancing on a scale from 0.0-1.0.}
+\item{instrumentalness}{predicts if a song has no vocals on a scale from
+0.0-1.0. The higher the instrumentalness the greater the chance the song
+contains no vocal content.}
 
-\item{instrumentalness}{predicts if a song has no vocals on a scale from 0.0-1.0. The higher the instrumentalness the greater the chance the song contains no vocal content.}
-
-\item{min_duration}{the minimum duration of the song in seconds}
-
-\item{max_duration}{the maximum duration of the song in seconds}
+\item{print}{Whether the songs will be printed as it is reccomended}
 }
 \value{
-an object of the song class
+an object of the song class with the following elements
+\itemize{
+\item song
+\item author
+\item duration
+}
 }
 \description{
 Given a genre of song and optionally other
+}
+\examples{
+rec_song("pop", mode = 1, energy = 0.7, valence = 0.5, danceability = 0.8,
+instrumentalness = 0.7, min_duration = 100, max_duration = 400)
+
 }
