@@ -7,7 +7,7 @@
 \method{print}{song}(x)
 }
 \arguments{
-\item{song}{An object of type song to print out}
+\item{x}{An object of type song to print out}
 }
 \description{
 Prints objects of song class in neat format

@@ -1,8 +1,9 @@
 #' @title Playlist Generator
 #' @description Returns a playlist for a user given a genre other characteristics
 #' @importFrom purrr map
-#' @param nsongs the number of songs in a
-#' @param genre the genre
+#' @param nsongs the number of songs in the playlist, maximum of 15
+#' @param genre the genre a user wants all songs in their playlists to fit under
+#' @param ... Other specifications for the playlist, all specifications for rec_song welcome
 #' @return An object of the song class
 #' @export
 rec_playlist <- function(genre, nsongs, ...) {

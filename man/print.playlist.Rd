@@ -7,10 +7,8 @@
 \method{print}{playlist}(x)
 }
 \arguments{
-\item{songs}{A song}
-
-\item{genre}{Genre of the playlist}
+\item{x}{A playlist object to be printed}
 }
 \description{
-The helper function called in playlist generator to make playlist
+An S3 method to print playlists
 }

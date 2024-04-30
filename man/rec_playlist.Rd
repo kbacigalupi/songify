@@ -7,9 +7,11 @@
 rec_playlist(genre, nsongs, ...)
 }
 \arguments{
-\item{genre}{the genre}
+\item{genre}{the genre a user wants all songs in their playlists to fit under}
 
-\item{nsongs}{the number of songs in a}
+\item{nsongs}{the number of songs in the playlist, maximum of 15}
+
+\item{...}{Other specifications for the playlist, all specifications for rec_song welcome}
 }
 \value{
 An object of the song class

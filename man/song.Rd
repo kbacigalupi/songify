@@ -21,11 +21,9 @@ genres - in this case whatever the user has asked for is the genre)}
 \item{energy}{Measure from 0 to 1 on "perceptual measure of intensity and
 activity" where 1 is more active}
 
+\item{key_mode}{A character describing whether the song is major, minor, and in what key (A - G)}
+
 \item{tempo}{in BPM}
-
-\item{key}{Number 1 - 12 that is translated into Words}
-
-\item{mode}{Major (1) or Minor (0) combined with key to produce the key of song in character value}
 }
 \description{
 The helper function called in song generator that makes a song

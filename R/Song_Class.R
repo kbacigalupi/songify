@@ -60,8 +60,7 @@ validate_song <- function(obj) {
 #' @param danceability On a scale of 0 to 1
 #' @param energy Measure from 0 to 1 on "perceptual measure of intensity and
 #'   activity" where 1 is more active
-#' @param key Number 1 - 12 that is translated into Words
-#' @param mode Major (1) or Minor (0) combined with key to produce the key of song in character value
+#' @param key_mode A character describing whether the song is major, minor, and in what key (A - G)
 #' @param tempo in BPM
 song <- function(title, author, duration, genre, danceability, energy, key_mode, tempo) {
   duration = duration / 1000
@@ -75,7 +74,7 @@ song <- function(title, author, duration, genre, danceability, energy, key_mode,
 #' @title Print Song
 #'
 #' @description Prints objects of song class in neat format
-#' @param song An object of type song to print out
+#' @param x An object of type song to print out
 #' @exportS3Method
 print.song <- function(x) {
 

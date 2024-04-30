@@ -15,7 +15,7 @@ Imports:
     purrr,
     spotifyr
 Depends: 
-    R (>= 2.10)
+    R (>= 2.10), dplyr, purrr, spotifyr
 LazyData: true
 Suggests: 
     knitr,
