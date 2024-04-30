@@ -33,7 +33,7 @@ The objects returned by `rec_song()` are of the S3 class 'song'
 To generate the playlist, use the `get_playlist()` function. We'll retrieve a playlist using an argument for `genre` and `nsongs` which will be the number of songs you want in your playlist. We will retrieve a playlist for 5 songs.
 
 ```{r}
-a_playlist <- get_playlist("pop", 5)
+a_playlist <- rec_playlist("pop", 5)
 ```
 
 ## Song Bank Data

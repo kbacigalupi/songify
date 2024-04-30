@@ -7,7 +7,7 @@
 \method{summary}{playlist}(x)
 }
 \arguments{
-\item{obj}{An object of the type playlist}
+\item{x}{An object of the type playlist to be summarized}
 }
 \description{
 Summarizes each song & it's characteristics
