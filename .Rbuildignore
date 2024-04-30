@@ -4,3 +4,6 @@
 ^\.httr-oauth$
 ^README\.Rmd$
 ^\.github$
+^.Renviron$
+^doc$
+^Meta$

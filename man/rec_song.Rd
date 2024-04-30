@@ -17,6 +17,28 @@ rec_song(
   print = TRUE
 )
 }
+\arguments{
+\item{genre}{the genre}
+
+\item{mode}{the mode, 0 for minor 1 for major}
+
+\item{energy}{the energy of the song on a scale from 0.0-1.0}
+
+\item{loudness}{the loudness of the song in decibels, values typically range from -60-0}
+
+\item{valence}{describes the musical positiveness of a song on a scale from 0.0-1.0. Higher valence songs are more happy/euphoric, lower valence songs are more angry/depressed.}
+
+\item{danceability}{describes how suitable the song is for dancing on a scale from 0.0-1.0.}
+
+\item{instrumentalness}{predicts if a song has no vocals on a scale from 0.0-1.0. The higher the instrumentalness the greater the chance the song contains no vocal content.}
+
+\item{min_duration}{the minimum duration of the song in seconds}
+
+\item{max_duration}{the maximum duration of the song in seconds}
+}
+\value{
+an object of the song class
+}
 \description{
 Given a genre of song and optionally other
 }
