@@ -5,6 +5,7 @@
 #' @param genre the genre a user wants all songs in their playlists to fit under
 #' @param ... Other specifications for the playlist, all specifications for rec_song welcome
 #' @return An object of the song class
+#' @examples /R/Rec_Playlist_Example.R
 #' @export
 rec_playlist <- function(genre, nsongs, ...) {
   if (nsongs > 15 | nsongs < 1) {

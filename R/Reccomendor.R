@@ -1,7 +1,6 @@
 #' @title Recommend a song
 #'
-#' @description
-#' Given a genre of song and optionally other
+#' @description Given a genre of song and optionally other
 #'
 #' @importFrom spotifyr get_genre_artists
 #' @importFrom spotifyr get_artist_audio_features
@@ -12,16 +11,23 @@
 #' @param genre the genre
 #' @param mode the mode, 0 for minor 1 for major
 #' @param energy the energy of the song on a scale from 0.0-1.0
-#' @param valence describes the musical positiveness of a song on a scale from 0.0-1.0. Higher valence songs are more happy/euphoric, lower valence songs are more angry/depressed.
-#' @param danceability describes how suitable the song is for dancing on a scale from 0.0-1.0.
-#' @param instrumentalness predicts if a song has no vocals on a scale from 0.0-1.0. The higher the instrumentalness the greater the chance the song contains no vocal content.
+#' @param valence describes the musical positiveness of a song on a scale from
+#'   0.0-1.0. Higher valence songs are more happy/euphoric, lower valence songs
+#'   are more angry/depressed.
+#' @param danceability describes how suitable the song is for dancing on a scale
+#'   from 0.0-1.0.
+#' @param instrumentalness predicts if a song has no vocals on a scale from
+#'   0.0-1.0. The higher the instrumentalness the greater the chance the song
+#'   contains no vocal content.
+#' @param print Whether the songs will be printed as it is reccomended
 #' @return an object of the song class with the following elements
 #' * song
 #' * author
 #' * duration
 #'
 #' @examples
-#' rec_song("pop", mode = 1, energy = 0.7, valence = 0.5, danceability = 0.8, instrumentalness = 0.7)
+#' rec_song("pop", mode = 1, energy = 0.7, valence = 0.5, danceability = 0.8,
+#' instrumentalness = 0.7)
 #'
 #' @export
 #'
