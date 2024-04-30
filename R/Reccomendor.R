@@ -54,44 +54,39 @@ rec_song <- function(genre, mode = NULL, energy = NULL, loudness = NULL, valence
 
 
   tracks <- spotifyr::get_artist_audio_features(artist$id)
+  print(nrow(tracks))
   # Apply other filters based on user inputs
   if (!is.null(mode)) {
-    tracks <- tracks |>
-      dplyr::filter(mode == mode)
+    tracks <- dplyr::filter(tracks, tracks$mode == mode)
   }
   if (!is.null(energy)) {
-    tracks <- tracks |>
-      dplyr::filter(abs(energy - energy) <= 0.1)
+    tracks <- dplyr::filter(tracks, abs(tracks$energy - energy) <= 0.1)
   }
   if (!is.null(loudness)) {
-    tracks <- tracks |>
-      dplyr::filter(abs(loudness - loudness) <= 1)
+    tracks <- dplyr::filter(tracks, abs(tracks$loudness - loudness) <= 0.1)
   }
   if (!is.null(valence)) {
-    tracks <- tracks |>
-      dplyr::filter(abs(valence - valence) <= 0.1)
+    tracks <- dplyr::filter(tracks, abs(tracks$valence - valence) <= 0.1)
   }
   if (!is.null(danceability)) {
-    tracks <- tracks |>
-      dplyr::filter(abs(danceability - danceability) <= 0.1)
+    tracks <- dplyr::filter(tracks, abs(tracks$danceability - danceability) <= 0.1)
   }
   if (!is.null(instrumentalness)) {
-    tracks <- tracks |>
-      dplyr::filter(abs(instrumentalness - instrumentalness) <= 0.1)
+    tracks <- dplyr::filter(tracks, (abs(tracks$instrumentalness - instrumentalness) <= 0.1))
   }
   if (!is.null(min_duration)) {
-    tracks <- tracks |>
-      dplyr::filter(duration_ms >= min_duration * 1000)  # Convert duration to milliseconds
+    tracks <- dplyr::filter(tracks, tracks$duration_ms >= min_duration * 1000)  # Convert duration to milliseconds
   }
   if (!is.null(max_duration)) {
-    tracks <- tracks |>
-      dplyr::filter(duration_ms <= max_duration * 1000)
+    tracks <- dplyr::filter(tracks, tracks$duration_ms <= max_duration * 1000)
   }
 
   # If no tracks are found after filtering
   if (nrow(tracks) == 0) {
     return("No tracks found, try again")  # or return a message indicating no tracks found
   }
+
+  print(nrow(tracks))
 
   # Select a random track
   track <- dplyr::sample_n(tracks, 1)
