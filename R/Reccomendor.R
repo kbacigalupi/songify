@@ -22,7 +22,7 @@
 #'
 #' @export
 rec_song <- function(genre, mode = NULL, energy = NULL, loudness = NULL, valence = NULL,
-                     danceability = NULL, instrumentalness = NULL, min_duration = NULL, max_duration = NULL, print = TRUE) {
+                     danceability = NULL, instrumentalness = NULL, print = TRUE) {
 
   # Filter artists based on genre
 
@@ -74,19 +74,14 @@ rec_song <- function(genre, mode = NULL, energy = NULL, loudness = NULL, valence
   if (!is.null(instrumentalness)) {
     tracks <- dplyr::filter(tracks, (abs(tracks$instrumentalness - instrumentalness) <= 0.1))
   }
-  if (!is.null(min_duration)) {
-    tracks <- dplyr::filter(tracks, tracks$duration_ms >= min_duration * 1000)  # Convert duration to milliseconds
-  }
-  if (!is.null(max_duration)) {
-    tracks <- dplyr::filter(tracks, tracks$duration_ms <= max_duration * 1000)
-  }
+
 
   # If no tracks are found after filtering
   if (nrow(tracks) == 0) {
     return("No tracks found, try again")  # or return a message indicating no tracks found
   }
 
-  print(nrow(tracks))
+  #print(nrow(tracks))
 
   # Select a random track
   track <- dplyr::sample_n(tracks, 1)
