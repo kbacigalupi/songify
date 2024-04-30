@@ -21,7 +21,7 @@
 #' * duration
 #'
 #' @examples
-#' rec_song("pop", mode = 1, energy = 0.7, valence = 0.5, danceability = 0.8, instrumentalness = 0.7, min_duration = 100, max_duration = 400)
+#' rec_song("pop", mode = 1, energy = 0.7, valence = 0.5, danceability = 0.8, instrumentalness = 0.7)
 #'
 #' @export
 #'
@@ -90,7 +90,7 @@ rec_song <- function(genre, mode = NULL, energy = NULL, valence = NULL,
       # Select a random track from the filtered tracks
       track <- dplyr::sample_n(filtered_tracks, 1)
 
-      # Create the song object and print it if necessary
+      # Create the song object and print it
       song <- song(track$track_name, track$artist_name, track$duration_ms, genre, track$danceability, track$energy, track$key_mode, track$tempo)
 
       if (print == TRUE) {
