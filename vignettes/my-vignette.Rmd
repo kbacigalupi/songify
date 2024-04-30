@@ -31,13 +31,13 @@ message("No spotify credentials found. Subsequent code chunks will not be evalua
 
 ## Generating a recommended song
 
-The main function of the songify package is to generate a song or a playlist given user inputs including genre, mode, energy, loudness, valence, danceability, instrumentalness, and duration. Let's see how we can accomplish this. First, load the `songify` package.
+The main function of the songify package is to generate a song or a playlist given user inputs including genre, mode, energy, valence, danceability, and instrumentalness. Let's see how we can accomplish this. First, load the `songify` package.
 
 ```{r setup}
 library(songify)
 ```
 
-Then, use the `rec_song()` function to generate a song recommendation. We'll retrieve information about a pop song, so we'll set the `genre` argument as 'pop' and the `energy` will be set to 0.8. For the parameters `energy`, `mode`, `valence`, `danceability`, `instrumentalness` can be enters on a sliding scale from 0.0-1.0. You can be as specific as you want and go to many decimal places. The parameter `loudness` is the decibels of the song and commonly ranges from -60-0. `min_duration` and `max_duration` use the minimum and maximum number of seconds that the song will be. 
+Then, use the `rec_song()` function to generate a song recommendation. We'll retrieve information about a pop song, so we'll set the `genre` argument as 'pop' and the `energy` will be set to 0.8. For the parameters `energy`, `mode`, `valence`, `danceability`, `instrumentalness` can be enters on a sliding scale from 0.0-1.0. You can be as specific as you want and go to many decimal places.
 
 ```{r}
 a_song <- rec_song("pop", energy = 0.8)
