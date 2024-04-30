@@ -75,7 +75,10 @@ rec_song <- function(genre, mode = NULL, energy = NULL, valence = NULL,
     dif <- dif + 0.02
     print(dif)
 
-    if (dif > 0.22){stop("Could not find song close to your specifications. Try a new combination!")}
+    if (dif > 0.22){
+      print("Try different track settings - there were not enough tracks with your requirements ")
+      break
+    }
 
     tracks <- rbind(tracks, spotifyr::get_artist_audio_features(dplyr::sample_n(artists, 1)$id))
 

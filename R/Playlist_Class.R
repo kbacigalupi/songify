@@ -61,7 +61,8 @@ print.playlist <- function(x, ...) {
 #' @title Summarizing Songs in the playlist
 #'
 #' @description Summarizes each song & it's characteristics
-#' @param x An object of the type playlist to be summarized
+#' @param object An object of the type playlist to be summarized
+#' @param ... to adhere to generic summary method
 #' @importFrom purrr map
 #' @exportS3Method
 summary.playlist <- function(object, ...) {

@@ -4,10 +4,12 @@
 \alias{summary.song}
 \title{Song Summary}
 \usage{
-\method{summary}{song}(song)
+\method{summary}{song}(object, ...)
 }
 \arguments{
-\item{song}{an object of type song to summarize in more detail}
+\item{object}{an object of type song to summarize in more detail}
+
+\item{...}{to adhere to generic summary method}
 }
 \description{
 Presents information about song in table forms
