@@ -8,21 +8,36 @@ vignette: >
 ---
 
 ```{r, include = FALSE}
+library(spotifyr)
+
+credentials <- tryCatch(expr = {
+    list(token = spotifyr::get_spotify_access_token(), found = TRUE)
+  },
+  error = function(e) {
+    list(token = NA_character_, found = FALSE)
+  }
+)
+
 knitr::opts_chunk$set(
   collapse = TRUE,
-  comment = "#>"
+  comment = "#>",
+  eval = credentials$found
 )
+```
+
+```{r eval=!credentials$found}
+message("No spotify credentials found. Subsequent code chunks will not be evaluated.")
 ```
 
 ## Generating a recommended song
 
-The main function of the songify package is to generate a song or a playlist given user inputs including genre, mode, energy, loudness, valence, danceability, instrumentalness, and duration. Let's see how we can accomplish this. First, load the `songify` package.
+The main function of the songify package is to generate a song or a playlist given user inputs including genre, mode, energy, valence, danceability, and instrumentalness. Let's see how we can accomplish this. First, load the `songify` package.
 
 ```{r setup}
 library(songify)
 ```
 
-Then, use the `rec_song()` function to generate a song recommendation. We'll retrieve information about a pop song, so we'll set the `genre` argument as 'pop' and the `energy` will be set to 0.8.
+Then, use the `rec_song()` function to generate a song recommendation. We'll retrieve information about a pop song, so we'll set the `genre` argument as 'pop' and the `energy` will be set to 0.8. For the parameters `energy`, `mode`, `valence`, `danceability`, `instrumentalness` can be enters on a sliding scale from 0.0-1.0. You can be as specific as you want and go to many decimal places.
 
 ```{r}
 a_song <- rec_song("pop", energy = 0.8)
@@ -30,7 +45,7 @@ a_song <- rec_song("pop", energy = 0.8)
 
 The objects returned by `rec_song()` are of the S3 class 'song'
 
-To generate the playlist, use the `get_playlist()` function. We'll retrieve a playlist using an argument for `genre` and `nsongs` which will be the number of songs you want in your playlist. We will retrieve a playlist for 5 songs.
+To generate the playlist, use the `rec_playlist()` function. We'll retrieve a playlist using an argument for `genre` and `nsongs` which will be the number of songs you want in your playlist. We will retrieve a playlist for 5 songs.
 
 ```{r}
 a_playlist <- rec_playlist("pop", 5)
