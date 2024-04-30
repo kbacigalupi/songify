@@ -56,35 +56,38 @@ rec_song <- function(genre, mode = NULL, energy = NULL, loudness = NULL, valence
   tracks <- spotifyr::get_artist_audio_features(artist$id)
   print(nrow(tracks))
   # Apply other filters based on user inputs
+  filters <- TRUE
+
   if (!is.null(mode)) {
-    tracks <- dplyr::filter(tracks, tracks$mode == mode)
+    filters <- filters & (tracks$mode == mode)
   }
   if (!is.null(energy)) {
-    tracks <- dplyr::filter(tracks, abs(tracks$energy - energy) <= 0.1)
+    filters <- filters & abs(tracks$energy - energy) <= 0.1
   }
   if (!is.null(loudness)) {
-    tracks <- dplyr::filter(tracks, abs(tracks$loudness - loudness) <= 0.1)
+    filters <- filters & abs(tracks$loudness - loudness) <= 0.1
   }
   if (!is.null(valence)) {
-    tracks <- dplyr::filter(tracks, abs(tracks$valence - valence) <= 0.1)
+    filters <- filters & abs(tracks$valence - valence) <= 0.1
   }
   if (!is.null(danceability)) {
-    tracks <- dplyr::filter(tracks, abs(tracks$danceability - danceability) <= 0.1)
+    filters <- filters & abs(tracks$danceability - danceability) <= 0.1
   }
   if (!is.null(instrumentalness)) {
-    tracks <- dplyr::filter(tracks, (abs(tracks$instrumentalness - instrumentalness) <= 0.1))
+    filters <- filters & abs(tracks$instrumentalness - instrumentalness) <= 0.1
   }
 
+  # Apply the filters
+  filtered_tracks <- tracks[filters, ]
 
-  # If no tracks are found after filtering
-  if (nrow(tracks) == 0) {
-    return("No tracks found, try again")  # or return a message indicating no tracks found
+  print(nrow(filtered_tracks))
+  # Return early if no tracks found after filtering
+  if (nrow(filtered_tracks) == 0) {
+    return(rec_song(genre, mode, energy, loudness, valence, danceability, instrumentalness, print))
   }
 
-  #print(nrow(tracks))
-
-  # Select a random track
-  track <- dplyr::sample_n(tracks, 1)
+  # Select a random track from the filtered tracks
+  track <- dplyr::sample_n(filtered_tracks, 1)
   #print(track)
 
   # Return the recommended track
