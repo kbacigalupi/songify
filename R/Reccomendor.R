@@ -113,7 +113,7 @@ rec_song <- function(genre, mode = NULL, energy = NULL, valence = NULL,
       # Select a random track from the filtered tracks
       track <- dplyr::sample_n(filtered_tracks, 1)
 
-      # Create the song object and print it if necessary
+      # Create the song object and print it
       song <- song(track$track_name, track$artist_name, track$duration_ms, genre, track$danceability, track$energy, track$key_mode, track$tempo)
 
       if (p != FALSE) {
