@@ -66,8 +66,8 @@ print.playlist <- function(x, ...) {
 #' @importFrom purrr map
 #' @exportS3Method
 summary.playlist <- function(object, ...) {
-  print(class(object))
-  print(attr(object, "nsongs"))
+  #print(class(object))
+  #print(attr(object, "nsongs"))
   nsongs <- attr(object, "nsongs")
   sum_tbl <- data.frame(matrix(NA, nrow = nsongs, ncol = 7))
   colnames(sum_tbl) = c("Title", "Genre", "Author", "Danceability", "Energy", "Key", "Tempo")
