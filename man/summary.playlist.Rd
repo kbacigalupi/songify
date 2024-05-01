@@ -4,10 +4,12 @@
 \alias{summary.playlist}
 \title{Summarizing Songs in the playlist}
 \usage{
-\method{summary}{playlist}(x)
+\method{summary}{playlist}(object, ...)
 }
 \arguments{
-\item{x}{An object of the type playlist to be summarized}
+\item{object}{An object of the type playlist to be summarized}
+
+\item{...}{to adhere to generic summary method}
 }
 \description{
 Summarizes each song & it's characteristics

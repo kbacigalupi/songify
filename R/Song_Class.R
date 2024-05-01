@@ -75,8 +75,9 @@ song <- function(title, author, duration, genre, danceability, energy, key_mode,
 #'
 #' @description Prints objects of song class in neat format
 #' @param x An object of type song to print out
+#' @param ... to adhere to generic print method
 #' @exportS3Method
-print.song <- function(x) {
+print.song <- function(x, ...) {
 
   if (!is.null(attr(x, "duration"))) {
     duration_min <- round(attr(x, "duration")/60, 0)
@@ -97,15 +98,16 @@ print.song <- function(x) {
 #' @title Song Summary
 #'
 #' @description Presents information about song in table forms
-#' @param song an object of type song to summarize in more detail
+#' @param object an object of type song to summarize in more detail
+#' @param ... to adhere to generic summary method
 #' @exportS3Method
-summary.song <- function(song) {
-  summary_tbl <- data.frame(song = song,
-                            "Genre" = attr(song, "genre"),
-                            "Danceability" = attr(song, "danceability"),
-                            "Energy" =  attr(song, "energy"),
-                            "Key" = attr(song, "key"),
-                            "Tempo" = attr(song, "tempo")
+summary.song <- function(object, ...) {
+  summary_tbl <- data.frame(song = object,
+                            "Genre" = attr(object, "genre"),
+                            "Danceability" = attr(object, "danceability"),
+                            "Energy" =  attr(object, "energy"),
+                            "Key" = attr(object, "key"),
+                            "Tempo" = attr(object, "tempo")
                             )
   return(summary_tbl)
 }
