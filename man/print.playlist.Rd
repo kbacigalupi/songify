@@ -4,10 +4,12 @@
 \alias{print.playlist}
 \title{Print Playlist}
 \usage{
-\method{print}{playlist}(x)
+\method{print}{playlist}(x, ...)
 }
 \arguments{
 \item{x}{A playlist object to be printed}
+
+\item{...}{To adhere to generic print method}
 }
 \description{
 An S3 method to print playlists
