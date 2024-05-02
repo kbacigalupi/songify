@@ -39,24 +39,24 @@ library(songify)
 
 Then, use the `rec_song()` function to generate a song recommendation. We'll retrieve information about a pop song, so we'll set the `genre` argument as 'pop' and the `energy` will be set to 0.8. For the parameters `energy`, `mode`, `valence`, `danceability`, `instrumentalness` can be enters on a sliding scale from 0.0-1.0. You can be as specific as you want and go to many decimal places.
 
-```{r}
-#a_song <- rec_song("pop", energy = 0.8)
+```{r eval = FALSE}
+a_song <- rec_song("pop", energy = 0.8)
 ```
 
 The objects returned by `rec_song()` are of the S3 class 'song'
 
 To generate the playlist, use the `rec_playlist()` function. We'll retrieve a playlist using an argument for `genre` and `nsongs` which will be the number of songs you want in your playlist. We will retrieve a playlist for 5 songs.
 
-```{r}
-#a_playlist <- rec_playlist("pop", 5)
+```{r eval = FALSE}
+a_playlist <- rec_playlist("pop", 5)
 ```
 
 ## Song Bank Data
 
 The `songify` package also comes with a built in data set with all of the songs by Taylor Swift (as of April 2024) 
 
-```{r}
-#songify::song_bank
+```{r eval = FALSE}
+songify::song_bank
 ```
 
 
