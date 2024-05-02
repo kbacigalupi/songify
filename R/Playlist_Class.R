@@ -48,10 +48,11 @@ playlist <- function(songs, genre) {
 #'
 #' @description An S3 method to print playlists
 #' @param x A playlist object to be printed
+#' @param ... To adhere to generic print method
 #' @exportS3Method
 #'
-print.playlist <- function(x) {
-  print(paste("There are", attr(x, "nsongs"), "songs in your playlist:"))
+print.playlist <- function(x, ...) {
+  print(paste("There are", attr(x, "nsongs"), "song(s) in your playlist:"))
   for(i in seq_along(x)) {
     print(paste0("", print.song(x[[i]])))
   }
@@ -60,23 +61,24 @@ print.playlist <- function(x) {
 #' @title Summarizing Songs in the playlist
 #'
 #' @description Summarizes each song & it's characteristics
-#' @param x An object of the type playlist to be summarized
+#' @param object An object of the type playlist to be summarized
+#' @param ... to adhere to generic summary method
 #' @importFrom purrr map
 #' @exportS3Method
-summary.playlist <- function(x) {
-  print(class(x))
-  print(attr(x, "nsongs"))
-  nsongs <- attr(x, "nsongs")
+summary.playlist <- function(object, ...) {
+  #print(class(object))
+  #print(attr(object, "nsongs"))
+  nsongs <- attr(object, "nsongs")
   sum_tbl <- data.frame(matrix(NA, nrow = nsongs, ncol = 7))
   colnames(sum_tbl) = c("Title", "Genre", "Author", "Danceability", "Energy", "Key", "Tempo")
   for (i in 1:nsongs) {
-    sum_tbl[i, 1] = x[[i]]
-    sum_tbl[i, 2] = attr(x[[i]], 'genre')
-    sum_tbl[i, 3] = attr(x[[i]], 'author')
-    sum_tbl[i, 4] = attr(x[[i]], 'danceability')
-    sum_tbl[i, 5] = attr(x[[i]], 'energy')
-    sum_tbl[i, 6] = attr(x[[i]], 'key')
-    sum_tbl[i, 7] = attr(x[[i]], 'tempo')
+    sum_tbl[i, 1] = object[[i]]
+    sum_tbl[i, 2] = attr(object[[i]], 'genre')
+    sum_tbl[i, 3] = attr(object[[i]], 'author')
+    sum_tbl[i, 4] = attr(object[[i]], 'danceability')
+    sum_tbl[i, 5] = attr(object[[i]], 'energy')
+    sum_tbl[i, 6] = attr(object[[i]], 'key')
+    sum_tbl[i, 7] = attr(object[[i]], 'tempo')
   }
   return(sum_tbl)
 }

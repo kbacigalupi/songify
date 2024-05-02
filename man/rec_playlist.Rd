@@ -20,5 +20,6 @@ An object of the song class
 Returns a playlist for a user given a genre other characteristics
 }
 \examples{
-/R/Rec_Playlist_Example.R
+rec_playlist("funk", 3)
+rec_playlist("pop", 4, energy = 0.5, mode = 1, danceability = .7)
 }

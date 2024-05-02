@@ -4,10 +4,12 @@
 \alias{print.song}
 \title{Print Song}
 \usage{
-\method{print}{song}(x)
+\method{print}{song}(x, ...)
 }
 \arguments{
 \item{x}{An object of type song to print out}
+
+\item{...}{to adhere to generic print method}
 }
 \description{
 Prints objects of song class in neat format
