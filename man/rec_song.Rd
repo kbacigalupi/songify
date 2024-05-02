@@ -47,6 +47,6 @@ Given a genre of song and optionally other
 }
 \examples{
 rec_song("pop", mode = 1, energy = 0.7, valence = 0.5, danceability = 0.8,
-instrumentalness = 0.7, min_duration = 100, max_duration = 400)
+instrumentalness = 0.7)
 
 }

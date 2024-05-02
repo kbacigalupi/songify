@@ -19,3 +19,6 @@ An object of the song class
 \description{
 Returns a playlist for a user given a genre other characteristics
 }
+\examples{
+/R/Rec_Playlist_Example.R
+}
