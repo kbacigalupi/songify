@@ -31,9 +31,10 @@
 #  * key_mode (A-B, Major/Minor)
 #' * tempo
 #' @examples
+#' \dontrun{
 #' rec_song("pop", mode = 1, energy = 0.7, valence = 0.5, danceability = 0.8,
 #' instrumentalness = 0.7)
-#'
+#' }
 #' @export
 rec_song <- function(genre, mode = NULL, energy = NULL, valence = NULL,
                      danceability = NULL, instrumentalness = NULL, p = TRUE) {
