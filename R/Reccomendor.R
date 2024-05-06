@@ -63,6 +63,11 @@ rec_song <- function(genre, mode = NULL, energy = NULL, valence = NULL,
     return("No artists found for this genre, try again")
   }
 
+  # Additional check to handle empty artist data frame
+  if (nrow(artists) == 0) {
+    return("No artists found for this genre, try again")
+  }
+
   dif <-  0.08
 
   # Select a random artist
