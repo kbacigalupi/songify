@@ -38,8 +38,6 @@
 #' @export
 rec_song <- function(genre, mode = NULL, energy = NULL, valence = NULL,
                      danceability = NULL, instrumentalness = NULL, p = TRUE) {
-  #print(p)
-  # Filter artists based on genre
 
   tryCatch(expr = {
     access_token <- spotifyr::get_spotify_access_token()
@@ -58,7 +56,6 @@ rec_song <- function(genre, mode = NULL, energy = NULL, valence = NULL,
 
   artists <- spotifyr::get_genre_artists(genre, authorization = access_token)
 
-  # If artists are found for the specified genre
   if (nrow(artists) == 0) {
     return("No artists found for this genre, try again")
   }
@@ -66,8 +63,7 @@ rec_song <- function(genre, mode = NULL, energy = NULL, valence = NULL,
   dif <-  0.08
 
   # Select a random artist
-  #artist <- dplyr::sample_n(artists, 1)
-  artist <- artists[20,]
+  artist <- dplyr::sample_n(artists, 1)
   # Get audio features for the selected artist, if the artist token is fault picks new artists
 
   for (i in 1:5) {
@@ -75,26 +71,22 @@ rec_song <- function(genre, mode = NULL, energy = NULL, valence = NULL,
       tracks <- spotifyr::get_artist_audio_features(artist$id)
       break()
     }, error = function(e) {
-      artists <- artists |> filter(artists$id != artist$id)
-      artist <- dplyr::sample_n(artists, 1)
-      print(artist$id)
       message("Thanks for your patience - We are pulling only the best songs for you")
     })
+    artists <- artists |> filter(artists$id != artist$id)
+    artist <- dplyr::sample_n(artists, 1)
   }
 
 
   # Create a loop to keep trying with different artists until a track is found
   while (TRUE) {
     dif <- dif + 0.02
-    #print(dif)
 
     if (dif > 0.22){
       print("Try different track settings - there were not enough tracks with your requirements ")
       break
     }
 
-
-    #print(nrow(tracks))
     # Combine all filters into one filter expression
     filters <- TRUE
 
@@ -118,7 +110,6 @@ rec_song <- function(genre, mode = NULL, energy = NULL, valence = NULL,
     # Apply the filters
     filtered_tracks <- tracks[filters, ]
 
-    #print(nrow(filtered_tracks))
     # If tracks are found after filtering, break the loop
     if (nrow(filtered_tracks) > 0) {
       # Select a random track from the filtered tracks

@@ -43,7 +43,6 @@ playlist <- function(songs, genre) {
   return(playlist)
 }
 
-
 #' @title Print Playlist
 #'
 #' @description An S3 method to print playlists
@@ -83,8 +82,3 @@ summary.playlist <- function(object, ...) {
   return(sum_tbl)
 }
 
-##
-#sum_tbl <- purrr::map(x, summary)
-#print(sum_tbl)
-#sum_tbl <- sum_tbl |>
-  #purrr::reduce(dplyr::full_join)
