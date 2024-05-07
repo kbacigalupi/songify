@@ -45,7 +45,7 @@ test_that("summary.song returns data frame with correct column names", {
     tempo = 120
   )
   summary_output <- summary.song(song_obj)
-  expected_cols <- c("song", "Genre", "Danceability", "Energy", "Key", "Tempo")
+  expected_cols <- c("song", "Genre", "Artist", "Danceability", "Energy", "Key", "Tempo")
   expect_equal(colnames(summary_output), expected_cols)
 })
 
