@@ -58,11 +58,6 @@ rec_song <- function(genre, mode = NULL, energy = NULL, valence = NULL,
 
   artists <- spotifyr::get_genre_artists(genre, authorization = access_token)
 
-  # If artists are found for the specified genre
-  if (length(artists) == 0) {
-    return("No artists found for this genre, try again")
-  }
-
   # Additional check to handle empty artist data frame
   if (nrow(artists) == 0) {
     return("No artists found for this genre, try again")
@@ -71,8 +66,7 @@ rec_song <- function(genre, mode = NULL, energy = NULL, valence = NULL,
   dif <-  0.08
 
   # Select a random artist
-  #artist <- dplyr::sample_n(artists, 1)
-  artist <- artists[20,]
+  artist <- dplyr::sample_n(artists, 1)
   # Get audio features for the selected artist, if the artist token is fault picks new artists
 
   for (i in 1:5) {
@@ -80,11 +74,11 @@ rec_song <- function(genre, mode = NULL, energy = NULL, valence = NULL,
       tracks <- spotifyr::get_artist_audio_features(artist$id)
       break()
     }, error = function(e) {
-      artists <- artists |> filter(artists$id != artist$id)
-      artist <- dplyr::sample_n(artists, 1)
-      print(artist$id)
       message("Thanks for your patience - We are pulling only the best songs for you")
     })
+    artists <- artists |> filter(artists$id != artist$id)
+    artist <- dplyr::sample_n(artists, 1)
+    print(artist$id)
   }
 
 

@@ -2,8 +2,6 @@
 output: github_document
 ---
 
-<!-- README.md is generated from README.Rmd. Please edit that file -->
-
 ```{r, include = FALSE}
 knitr::opts_chunk$set(
   collapse = TRUE,
@@ -28,23 +26,28 @@ You can install the development version of songify from [GitHub](https://github.
 ```{r}
 install.packages("devtools")
 devtools::install_github("kbacigalupi/songify")
+library(songify)
 ```
 
 ## Using Songify
 
-Use the `song_rec()` function with a variety of potential inputs to get a single song reccomendation. 
+Use the `rec_song()` function with a variety of potential inputs to get a single song recommendation. 
 
-```{r example}
-library(songify)
-## basic example code
+```{r, eval = FALSE}
+rec_song("pop", instrumentalness = 1)
 ```
 
-Use the `playlist_rec()` function with a variety of potential inputs to get a full playlist reccomednation. 
+Use the `rec_playlist()` function with a variety of potential inputs to get a full playlist recommendation. 
 
+```{r, eval = FALSE}
+rec_playlist("hip hop", nsongs = 10)
+```
 
 ## Data Set 
+Songify also includes a data set of Taylor Swift Songs with a variety of measures of song type.
 
-You'll still need to render `README.Rmd` regularly, to keep `README.md` up-to-date. `devtools::build_readme()` is handy for this.
+```{r, eval = FALSE}
+songify::song_bank
+```
 
 
-In that case, don't forget to commit and push the resulting figure files, so they display on GitHub and CRAN.
