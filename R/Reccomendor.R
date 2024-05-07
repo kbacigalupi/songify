@@ -56,7 +56,6 @@ rec_song <- function(genre, mode = NULL, energy = NULL, valence = NULL,
 
   artists <- spotifyr::get_genre_artists(genre, authorization = access_token)
 
-  # Additional check to handle empty artist data frame
   if (nrow(artists) == 0) {
     return("No artists found for this genre, try again")
   }
@@ -117,13 +116,13 @@ rec_song <- function(genre, mode = NULL, energy = NULL, valence = NULL,
       track <- dplyr::sample_n(filtered_tracks, 1)
 
       # Create the song object and print it
-      song <- song(track$track_name, track$artist_name, track$duration_ms, genre, track$danceability, track$energy, track$key_mode, track$tempo)
+      song_obj <- song(track$track_name, track$artist_name, track$duration_ms, genre, track$danceability, track$energy, track$key_mode, track$tempo)
 
       if (p != FALSE) {
-        print(paste0("", print(song)))
+        print(paste0("", print(song_obj)))
       }
 
-      return(song)
+      return(song_obj)
     }
 
     tryCatch(expr = {
