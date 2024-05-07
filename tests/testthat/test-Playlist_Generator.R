@@ -9,7 +9,8 @@ test_that("rec_playlist returns an object of type playlist", {
 test_that("rec_playlist returns playlist with correct genre", {
   skip_if(Sys.getenv("SPOTIFY_CLIENT_ID") == "" || Sys.getenv("SPOTIFY_CLIENT_SECRET") == "", "Spotify API credentials not available")
   result <- rec_playlist(genre = "funk", nsongs = 5)
-  expect_equal(attr(genre), "funk")
+  playlist_genre <- attr(result, "genre")
+  expect_equal(playlist_genre, "funk")
 })
 
 # Tests if the user inputs an invalid genre the user will get a message
