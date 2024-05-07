@@ -29,7 +29,8 @@ test_that("print.song returns a character vector", {
     key = "C major",
     tempo = 120
   )
- expect_type(song_obj, "character")
+  printed_output <- capture.output(print.song(song_obj))
+  expect_type(printed_output, "character")
 })
 
 # Tests that summary.song returns a data frame with the correct column names
