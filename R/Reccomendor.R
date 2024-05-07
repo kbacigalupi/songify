@@ -31,9 +31,10 @@
 #  * key_mode (A-B, Major/Minor)
 #' * tempo
 #' @examples
+#' \dontrun{
 #' rec_song("pop", mode = 1, energy = 0.7, valence = 0.5, danceability = 0.8,
 #' instrumentalness = 0.7)
-#'
+#' }
 #' @export
 rec_song <- function(genre, mode = NULL, energy = NULL, valence = NULL,
                      danceability = NULL, instrumentalness = NULL, p = TRUE) {
@@ -62,12 +63,29 @@ rec_song <- function(genre, mode = NULL, energy = NULL, valence = NULL,
     return("No artists found for this genre, try again")
   }
 
+  # Additional check to handle empty artist data frame
+  if (nrow(artists) == 0) {
+    return("No artists found for this genre, try again")
+  }
+
   dif <-  0.08
 
   # Select a random artist
-  artist <- dplyr::sample_n(artists, 1)
-  # Get audio features for the selected artist
-  tracks <- spotifyr::get_artist_audio_features(artist$id)
+  #artist <- dplyr::sample_n(artists, 1)
+  artist <- artists[20,]
+  # Get audio features for the selected artist, if the artist token is fault picks new artists
+
+  for (i in 1:5) {
+    tryCatch(expr = {
+      tracks <- spotifyr::get_artist_audio_features(artist$id)
+      break()
+    }, error = function(e) {
+      artists <- artists |> filter(artists$id != artist$id)
+      artist <- dplyr::sample_n(artists, 1)
+      print(artist$id)
+      message("Thanks for your patience - We are pulling only the best songs for you")
+    })
+  }
 
 
   # Create a loop to keep trying with different artists until a track is found
@@ -79,8 +97,6 @@ rec_song <- function(genre, mode = NULL, energy = NULL, valence = NULL,
       print("Try different track settings - there were not enough tracks with your requirements ")
       break
     }
-
-    tracks <- rbind(tracks, spotifyr::get_artist_audio_features(dplyr::sample_n(artists, 1)$id))
 
 
     #print(nrow(tracks))
@@ -122,5 +138,12 @@ rec_song <- function(genre, mode = NULL, energy = NULL, valence = NULL,
 
       return(song)
     }
+
+    tryCatch(expr = {
+      tracks <- rbind(tracks, spotifyr::get_artist_audio_features(dplyr::sample_n(artists, 1)$id))
+    }, error = function(e) {
+      artists <- artists |> filter(artists$id != artist$id)
+      message("Thanks for your patience - We are pulling only the best songs for you")
+    })
   }
 }

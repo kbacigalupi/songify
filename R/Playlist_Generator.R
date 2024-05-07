@@ -6,8 +6,10 @@
 #' @param ... Other specifications for the playlist, all specifications for rec_song welcome
 #' @return An object of the song class
 #' @examples
+#' \dontrun{
 #' rec_playlist("funk", 3)
 #' rec_playlist("pop", 4, energy = 0.5, mode = 1, danceability = .7)
+#' }
 #' @export
 rec_playlist <- function(genre, nsongs, ...) {
   if (nsongs > 15 | nsongs < 1) {
