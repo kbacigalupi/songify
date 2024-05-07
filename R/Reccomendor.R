@@ -38,8 +38,6 @@
 #' @export
 rec_song <- function(genre, mode = NULL, energy = NULL, valence = NULL,
                      danceability = NULL, instrumentalness = NULL, p = TRUE) {
-  #print(p)
-  # Filter artists based on genre
 
   tryCatch(expr = {
     access_token <- spotifyr::get_spotify_access_token()
@@ -78,22 +76,18 @@ rec_song <- function(genre, mode = NULL, energy = NULL, valence = NULL,
     })
     artists <- artists |> filter(artists$id != artist$id)
     artist <- dplyr::sample_n(artists, 1)
-    print(artist$id)
   }
 
 
   # Create a loop to keep trying with different artists until a track is found
   while (TRUE) {
     dif <- dif + 0.02
-    #print(dif)
 
     if (dif > 0.22){
       print("Try different track settings - there were not enough tracks with your requirements ")
       break
     }
 
-
-    #print(nrow(tracks))
     # Combine all filters into one filter expression
     filters <- TRUE
 
@@ -117,7 +111,6 @@ rec_song <- function(genre, mode = NULL, energy = NULL, valence = NULL,
     # Apply the filters
     filtered_tracks <- tracks[filters, ]
 
-    #print(nrow(filtered_tracks))
     # If tracks are found after filtering, break the loop
     if (nrow(filtered_tracks) > 0) {
       # Select a random track from the filtered tracks
