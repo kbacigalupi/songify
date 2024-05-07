@@ -59,9 +59,12 @@ print.playlist <- function(x, ...) {
 
 #' @title Summarizing Songs in the playlist
 #'
-#' @description Summarizes each song & it's characteristics
+#' @description Summarizes each song & it's characteristics in the form of a
+#'   data frame to be easily analyzed or combined with other song data.
 #' @param object An object of the type playlist to be summarized
 #' @param ... to adhere to generic summary method
+#' @return A data frame including the Title, Genre, Author, Danceability,
+#'   Energy, Key and Tempo of each song in the playlist.
 #' @importFrom purrr map
 #' @exportS3Method
 summary.playlist <- function(object, ...) {

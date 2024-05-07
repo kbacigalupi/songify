@@ -11,6 +11,11 @@
 
 \item{...}{to adhere to generic summary method}
 }
+\value{
+A data frame including the Title, Genre, Author, Danceability,
+Energy, Key and Tempo of each song in the playlist.
+}
 \description{
-Presents information about song in table forms
+Summarizes a song & it's characteristics in the form of a
+data frame to be easily combined with other song data.
 }
