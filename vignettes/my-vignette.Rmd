@@ -40,23 +40,36 @@ library(songify)
 Then, use the `rec_song()` function to generate a song recommendation. We'll retrieve information about a pop song, so we'll set the `genre` argument as 'pop' and the `energy` will be set to 0.8. For the parameters `energy`, `mode`, `valence`, `danceability`, `instrumentalness` can be enters on a sliding scale from 0.0-1.0. You can be as specific as you want and go to many decimal places.
 
 ```{r, eval=FALSE}
-a_song <- rec_song("pop", energy = 0.8)
+a_song <- rec_song("pop", energy = 0.8, instrumentalness = 1)
 ```
 
-The objects returned by `rec_song()` are of the S3 class 'song'
+You can also use S3 methods to print and summarize the information about your song. The `summary()` method returns a data frame.
+```{r, eval=FALSE}
+print(a_song)
+summary(a_song)
+```
 
-To generate the playlist, use the `rec_playlist()` function. We'll retrieve a playlist using an argument for `genre` and `nsongs` which will be the number of songs you want in your playlist. We will retrieve a playlist for 5 songs.
+The objects returned by `rec_song()` are of the S3 class `song` 
+
+To generate the playlist, use the `rec_playlist()` function. We'll retrieve a playlist using an argument for `genre` and `nsongs` which will be the number of songs you want in your playlist. We will retrieve a playlist for 5 songs. The objects returned are of class `playlist`. Reccomending a playlist can take a significant ammount of time - as would a playlist made with love from your friend. 
 
 ```{r, eval=FALSE}
 a_playlist <- rec_playlist("pop", 5)
+class(a_playlist)
+```
+
+You can also use S3 methods to print and summarize a given playlist. The `summary()` method returns a data frame which can be used for further data analysis. 
+
+```{r, eval=FALSE}
+print(a_playlist)
+summary(a_playlist)
 ```
 
 ## Song Bank Data
 
-The `songify` package also comes with a built in data set with all of the songs by Taylor Swift (as of April 2024) 
+The `songify` package also comes with a built in data set with all of the songs by Taylor Swift (as of April 2024). This is an example of the categories that the `rec_song()` function uses to pull from.
 
 ```{r, eval=FALSE}
 songify::song_bank
 ```
-
 

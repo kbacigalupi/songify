@@ -18,6 +18,9 @@ rec_playlist <- function(genre, nsongs, ...) {
   song_criteria <- list(...)
   empty_songs <- rep(c(genre), each = nsongs)
   songs <- purrr::map(.x = empty_songs, ... = ..., p = FALSE, .f = rec_song)
+  if (sum(songs == "No artists found for this genre, try again") > 0)  {
+    return("No artists found for this genre, try again")
+  }
   if(anyDuplicated(songs) != 0) {
     songs <- flip_repeats(songs, genre, ...)
     }
@@ -25,10 +28,12 @@ rec_playlist <- function(genre, nsongs, ...) {
   return(playlist)
 }
 
-
 flip_repeats <- function(songs, genre, ...) {
-  while(anyDuplicated(songs) != 0) {
+  for (i in 1:5) {
     songs[[anyDuplicated(songs)]] <- rec_song(genre = genre, ..., p = FALSE)
+    if(anyDuplicated(songs) == 0) {
+        break
+      }
   }
   return(songs)
 }

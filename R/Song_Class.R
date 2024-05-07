@@ -97,13 +97,17 @@ print.song <- function(x, ...) {
 
 #' @title Song Summary
 #'
-#' @description Presents information about song in table forms
+#' @description Summarizes a song & it's characteristics in the form of a
+#'   data frame to be easily combined with other song data.
 #' @param object an object of type song to summarize in more detail
 #' @param ... to adhere to generic summary method
+#' @return A data frame including the Title, Genre, Author, Danceability,
+#'   Energy, Key and Tempo of each song in the playlist.
 #' @exportS3Method
 summary.song <- function(object, ...) {
   summary_tbl <- data.frame(song = object,
                             "Genre" = attr(object, "genre"),
+                            "Artist" = attr(object, "author"),
                             "Danceability" = attr(object, "danceability"),
                             "Energy" =  attr(object, "energy"),
                             "Key" = attr(object, "key"),
